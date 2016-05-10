@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1>Programming By Recipie</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <textarea>{{ langList }}</textarea>
+        <form method="get">
+            <label>I need to do:</label>
+            <select name="task" id="task">
+                {{#each taskList}}
+                    <option value="{{task}}">{{task}}</option>
+                {{/each}}
+            </select><br>
+            <label>With language:</label>
+            <select name="language" id="language">
+                {{#each langList}}
+                    <option value="{{language}}">{{language}}</option>
+                {{/each}}
+            </select><br>
+            <label>Version:</label>
+            <select name="version" id="version">
+                {{#each verList}}
+                    <option value="{{version}}">{{version}}</option>
+                {{/each}}
+            </select><br>
+            <button type="submit">Let's go!</button>
+        </form>
+    </div>
+</div>
