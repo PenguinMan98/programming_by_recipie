@@ -4,12 +4,24 @@ var app = express();
 
 var rUtil = require('./util/rethink');
 
-app.set('views', './views'); // only needed if using a templating engine
+// initialize the templating engine
+app.set('views', './views');
 app.engine('handlebars', exphbs({defaultLayout: 'home'}));
 app.set('view engine', 'handlebars');
 
+// listen on this port
+app.listen(9876, function(){
+    console.log('This is my example app running');
+});
+
+// serve static files
+app.use(express.static('public'));
+
+
+/*
+* Index Page
+* */
 app.get('/', function(req, res){
-    console.log('routing /', req.query);
     if(req.query.task && req.query.language && req.query.version){
         // todo: some validation on these params
         res.redirect(req.query.language + "/" + req.query.version + "/" + req.query.task )
@@ -43,11 +55,22 @@ app.get('/', function(req, res){
     });
 });
 
-app.listen(9876, function(){
-    console.log('This is my example app running');
-});
+/*
+* Task Page!
+* */
+app.get(/\/[\w\s\+#]*\/[\d\.]*\/[\w\s]*/, function(req, res){
+    var path = req.path.split('/');
+    var language = decodeURIComponent(path[1]);
+    var version = decodeURIComponent(path[2]);
+    var task = decodeURIComponent(path[3]);
 
-app.use(express.static('public'));
+    if(!task || !language || !version){
+        res.redirect('/');
+        return;
+    }
+
+    res.render('task', {language: language, version: version, task: task});
+});
 
 // Let's start with something simple
 app.get('/rethink', function(req, res) {
