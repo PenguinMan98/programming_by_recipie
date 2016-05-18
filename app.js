@@ -16,7 +16,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'home'}));
 app.set('view engine', 'handlebars');
 
 // listen on this port
-var server = app.listen(9876, function(){
+var server = app.listen(9123, function(){
     console.log('This is my example app running');
 });
 var io = require('socket.io').listen(server);

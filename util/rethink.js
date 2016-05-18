@@ -37,6 +37,7 @@ var createPage = function( task, lang, ver, callback ){
             task: task,
             language: lang,
             version: ver,
+            content: '',
             type: '',
             group: '',
             prior: '',
@@ -113,7 +114,8 @@ module.exports = {
             }).*/run(connection, function(err, cursor){
                 console.log('cursor', cursor);
                 if(err) throw err;
-                cursor.each(function(rec){
+                cursor.each(function(err, rec){
+		    if(err) throw err;
                     console.log('rec', rec);
                     callback(rec);
                 });
