@@ -7,7 +7,11 @@
 <div class="row">
     <div class="col-md-12 text-center">
         <form method="get">
-            <button type="submit">Save</button>
+            <textarea
+                    id="content"
+                    onKeyUp="doSomething('{{language}}','{{version}}','{{task}}',this.value)"
+            >{{content}}</textarea>
+            <!--<button type="submit">Save</button>-->
         </form>
     </div>
 </div>
