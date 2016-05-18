@@ -11,6 +11,7 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
     "gun": "github:amark/gun",
     "handlebars": "^4.0.5",
     "node": "0.0.0",
